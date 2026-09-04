@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </svg>
                 </div>
                 <h3 class="success-title">Message Sent!</h3>
-                <p class="success-subtitle">Thank you for reaching out. Sagadeavn Kumaravel will contact you soon.</p>
+                <p class="success-subtitle">Thank you for reaching out. I will contact you soon.</p>
                 <button type="button" id="resetFormBtn" class="reset-btn">Send Another Message</button>
             </div>
         `;
