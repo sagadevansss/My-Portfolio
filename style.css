@@ -1,0 +1,563 @@
+/* Base Theme */
+body {
+    background-color: #0b0c10;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar Style */
+.custom-navbar {
+    background-color: rgba(11, 12, 16, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #1f2430;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed) !important;
+}
+
+/* Text Gradient */
+.text-gradient {
+    background: linear-gradient(135deg, #60a5fa, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Hero Binary Canvas Background */
+#binaryCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.25;
+}
+
+/* Hero Avatar Frame */
+.hero-avatar-frame {
+    max-width: 300px;
+    background: #12141d;
+    border: 2px solid rgba(96, 165, 250, 0.4);
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.hero-avatar-frame:hover {
+    transform: translateY(-5px);
+    border-color: #60a5fa;
+    box-shadow: 0 0 35px rgba(96, 165, 250, 0.5);
+}
+
+.profile-avatar-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Custom Cards */
+.custom-card {
+    background-color: #12141d;
+    border: 1px solid #1e2230;
+    border-radius: 1rem;
+}
+
+.glow-card {
+    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.glow-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: #60a5fa !important;
+    box-shadow: 0 10px 30px rgba(96, 165, 250, 0.25);
+}
+
+/* Glow Titles & Buttons */
+.glow-title {
+    text-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
+}
+
+.btn-glow-primary {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    border: none;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-glow-primary:hover {
+    box-shadow: 0 0 25px rgba(96, 165, 250, 0.6);
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+/* Custom Input Controls */
+.custom-input {
+    background-color: #0b0c10;
+    border: 1px solid #1e2230;
+    color: #f3f4f6;
+}
+
+.custom-input:focus {
+    background-color: #0b0c10;
+    border-color: #60a5fa;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
+}
+
+/* Hover Character Glow Effect */
+#glowingName .glow-char {
+    display: inline-block;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+#glowingName .glow-char:hover {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: 0 0 10px #60a5fa, 0 0 20px #818cf8;
+    transform: translateY(-4px) scale(1.15);
+}
+
+/* -------------------------------------------
+   Card Animations (Scroll-Triggered)
+------------------------------------------- */
+.animate-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Interactive Globe Styles */
+#globe-wrapper {
+    position: relative;
+    width: 100%;
+    height: 320px; /* Explicit height ensures Three.js canvas renders */
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#globe-container {
+    width: 100%;
+    height: 100%;
+}
+
+#globe-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+.location-btn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+    background-color: #0d6efd;
+    color: #ffffff;
+    border: none;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+}
+
+.location-btn:hover {
+    background-color: #0b5ed7;
+    transform: scale(1.03);
+}
+
+.custom-pin-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -100%);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.pin-card {
+    background: #ff3333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.pin-arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid #ff3333;
+}
+
+/* Ensure Card Layering */
+.custom-card {
+    position: relative;
+    z-index: 1;
+}
+
+/* Background Code Canvas Overlay */
+.card-code-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+/* Reveal background animation on hover */
+.custom-card:hover .card-code-canvas {
+    opacity: 0.35;
+}
+
+/* Keep card text and icons above animation overlay */
+.card-content {
+    z-index: 2;
+}
+
+/* Increase canvas visibility on hover */
+.custom-card:hover .card-code-canvas {
+    opacity: 0.85; /* Increased from 0.35 so the animation stands out brightly */
+}
+
+/* Add a slight text shadow to ensure title and body text stay crisp over bright animation */
+.card-content h3, 
+.card-content p, 
+.card-content .icon-box {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+/* Hero Image Styling */
+.hero-img-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 550px; /* Adjust maximum width as needed */
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    max-height: 520px; /* Adjust maximum height */
+    object-fit: contain;
+    transform: scale(1.15); /* Scale up the image size */
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: drop-shadow(0 10px 25px rgba(96, 165, 250, 0.25)); /* Subtle glowing shadow behind image */
+}
+
+.hero-img:hover {
+    transform: scale(1.20); /* Slight zoom on hover */
+    filter: drop-shadow(0 15px 35px rgba(96, 165, 250, 0.4));
+}
+
+.hero-title {
+  max-width: 100%; /* or increase width, e.g., width: 600px */
+  font-size: clamp(2rem, 4vw, 3.5rem); /* scales down text slightly on smaller screens to prevent wrapping */
+}
+/* Hero Image Styling - Shifted slightly to the right corner */
+.hero-img-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 550px;
+    text-align: right; /* Aligns image container towards the right */
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+    object-position: right center; /* Positions image content to the right */
+    transform: scale(1.15) translateX(15px); /* Slightly shifts image right */
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: drop-shadow(0 10px 25px rgba(96, 165, 250, 0.25));
+}
+
+.hero-img:hover {
+    transform: scale(1.20) translateX(20px); /* Keeps right position while zooming on hover */
+    filter: drop-shadow(0 15px 35px rgba(96, 165, 250, 0.4));
+}
+
+/* Character-by-Character Name Adjustment */
+#glowingName {
+    display: inline-block;
+    white-space: nowrap; /* Prevents awkward word splitting when characters scale up */
+}
+
+#glowingName .glow-char {
+    display: inline-block;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+#glowingName .glow-char:hover {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: 0 0 12px #60a5fa, 0 0 24px #818cf8;
+    transform: translateY(-4px) scale(1.2);
+}
+/* Card Background Canvas */
+#circuitCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.45; /* Adjust visibility/intensity as needed */
+}
+
+/* Card Container Styling */
+.custom-card {
+    background-color: #0d1117; /* Dark background matching Bootstrap dark mode */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Canvas background overlay */
+.card-code-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.15; /* Subtle blend with background */
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Allows user interactions to pass through */
+}
+
+/* Hover effects */
+.custom-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(13, 110, 253, 0.5); /* Glowing accent border */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(13, 110, 253, 0.2);
+}
+
+.custom-card:hover .card-code-canvas {
+    opacity: 0.4; /* Highlight matrix effect on hover */
+}
+
+/* Keep card content interactive and layered above canvas */
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.glow-title {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Animated Section Background */
+#projects {
+    background-color: #0d0e12; /* Dark base color */
+    position: relative;
+    overflow: hidden;
+}
+
+.animated-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    animation: floatBlob 12s infinite alternate ease-in-out;
+}
+
+/* Primary/Blue Glow Blob */
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: #0d6efd;
+    top: -50px;
+    left: -50px;
+}
+
+/* Info/Cyan Glow Blob */
+.blob-2 {
+    width: 350px;
+    height: 350px;
+    background: #0dcaf0;
+    bottom: -80px;
+    right: -50px;
+    animation-delay: -4s;
+}
+
+/* Warning/Yellow/Purple Accent Glow Blob */
+.blob-3 {
+    width: 250px;
+    height: 250px;
+    background: #ffc107;
+    top: 40%;
+    left: 45%;
+    animation-delay: -8s;
+}
+
+@keyframes floatBlob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+    50% {
+        transform: translate(60px, -40px) scale(1.15);
+    }
+    100% {
+        transform: translate(-40px, 50px) scale(0.9);
+    }
+}
+
+/* Make sure cards have backdrop blur for glassmorphism effect */
+.custom-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+/* Success Animation Overlay Styles */
+.form-success-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 20;
+    border-radius: inherit;
+}
+
+.form-success-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-content {
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.form-success-overlay.active .success-content {
+    transform: translateY(0);
+}
+
+.success-title {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.success-subtitle {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.reset-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e2e8f0;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* Checkmark SVG Animation */
+.success-checkmark {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.checkmark-svg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 3;
+    stroke: #22c55e;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #22c55e;
+    animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+    stroke: #22c55e;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}

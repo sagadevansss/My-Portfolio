@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D Earth Globe - Chennai Location</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    #globe-wrapper {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+    }
+
+    #globe-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Floating UI Button */
+    .location-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      background-color: #ff3333;
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .location-btn:hover {
+      background-color: #e60000;
+      transform: scale(1.03);
+    }
+
+    .location-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Pin Marker Styles */
+    .custom-pin-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translate(-50%, -100%);
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    .pin-card {
+      background: #ff3333;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .pin-arrow {
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid #ff3333;
+    }
+  </style>
+
+  <!-- Globe.gl library -->
+  <script src="https://unpkg.com/globe.gl"></script>
+</head>
+<body>
+
+  <div id="globe-wrapper">
+    <button class="location-btn" id="show-location-btn">📍 Show Location</button>
+    <div id="globe-container"></div>
+  </div>
+
+  <script>
+    const CHENNAI_LAT = 13.0827;
+    const CHENNAI_LNG = 80.2707;
+
+    const chennaiData = [
+      {
+        name: 'Chennai',
+        lat: CHENNAI_LAT,
+        lng: CHENNAI_LNG
+      }
+    ];
+
+    // Initialize Globe
+    const world = Globe()
+      (document.getElementById('globe-container'))
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+      .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
+      .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+      // Custom HTML Pin Marker
+      .htmlElementsData(chennaiData)
+      .htmlElement(d => {
+        const el = document.createElement('div');
+        el.className = 'custom-pin-wrapper';
+        el.innerHTML = `
+          <div class="pin-card">📍 ${d.name}</div>
+          <div class="pin-arrow"></div>
+        `;
+        return el;
+      });
+
+    // Enable Orbit Controls Auto-Rotation
+    const controls = world.controls();
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.8;
+
+    // Reset rotation position to focus on Chennai on button click
+    document.getElementById('show-location-btn').addEventListener('click', () => {
+      // Smoothly transition camera directly to Chennai over 1.5 seconds
+      world.pointOfView(
+        { lat: CHENNAI_LAT, lng: CHENNAI_LNG, altitude: 1.5 },
+        1500
+      );
+    });
+  </script>
+</body>
+</html>
